@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Lugar
-from .forms import LugarForm
+from .models import Lugar, Hotel
+from .forms import LugarForm, HotelForm
 
 def index(request):
     return render(request, 'index.html')
@@ -41,3 +41,40 @@ def lugar_delete(request, pk):
         lugar.delete()
         return redirect('lugar_list')
     return render(request, 'servicios/lugares/lugar_confirm_delete.html', {'lugar': lugar})
+
+# CRUD de Hoteles
+def hotel_list(request):
+    hoteles = Hotel.objects.all()
+    return render(request, 'servicios/hoteles/hotel_list.html', {'hoteles': hoteles})
+
+def hotel_detail(request, pk):
+    hotel = get_object_or_404(Hotel, pk=pk)
+    return render(request, 'servicios/hoteles/hotel_detail.html', {'hotel': hotel})
+
+def hotel_create(request):
+    if request.method == 'POST':
+        form = HotelForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('hotel_list')
+    else:
+        form = HotelForm()
+    return render(request, 'servicios/hoteles/hotel_form.html', {'form': form})
+
+def hotel_update(request, pk):
+    hotel = get_object_or_404(Hotel, pk=pk)
+    if request.method == 'POST':
+        form = HotelForm(request.POST, request.FILES, instance=hotel)
+        if form.is_valid():
+            form.save()
+            return redirect('hotel_list')
+    else:
+        form = HotelForm(instance=hotel)
+    return render(request, 'servicios/hoteles/hotel_form.html', {'form': form})
+
+def hotel_delete(request, pk):
+    hotel = get_object_or_404(Hotel, pk=pk)
+    if request.method == 'POST':
+        hotel.delete()
+        return redirect('hotel_list')
+    return render(request, 'servicios/hoteles/hotel_confirm_delete.html', {'hotel': hotel})

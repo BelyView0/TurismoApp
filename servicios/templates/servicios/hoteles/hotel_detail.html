@@ -1,0 +1,34 @@
+{% extends 'base.html '%}
+
+{%  block titulo %}
+   Hoteles detalle
+{%  endblock  %}
+
+{% block header %}
+<!-- Sobrescribe el bloque del header con nada -->
+{% endblock %}
+
+
+{% block contenido %}
+<div class="container mt-5 pt-5">
+    <h1>{{ hotel.nombre }}</h1>
+    <p>{{ hotel.descripcion }}</p>
+    <p>Dirección: {{ hotel.direccion }}</p>
+    <p>Precio: {{ hotel.precio }}</p>
+    <p>Teléfono: {{ hotel.telefono }}</p>
+    
+
+    {% if hotel.sitio_web %}
+    <p><a href="{{ hotel.sitio_web }}" target="_blank">Sitio Web</a></p>
+
+    {% endif %}
+
+    {% if hotel.imagen %}
+    <img src="{{ hotel.imagen.url }}" alt="{{ hotel.nombre }}" width="400">
+
+    {% endif %}
+    <a href="{% url 'hotel_list' %}">Volver</a>
+ 
+</div>
+
+{% endblock %}

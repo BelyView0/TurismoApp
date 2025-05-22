@@ -1,0 +1,28 @@
+{% extends 'base.html '%}
+
+{%  block titulo %}
+   Lista Hoteles
+{%  endblock  %}
+
+{% block header %}
+<!-- Sobrescribe el bloque del header con nada -->
+{% endblock %}
+
+
+{% block contenido %}
+<div class="container mt-5 pt-5">
+    <h1>Lista de Hoteles</h1>
+    <a class="btn btn-success mb-3" href="{% url 'hotel_create' %}">Registra Hotel</a>
+    <ul class="list-group">
+        {% for hotel in hoteles %}
+        <li class="list-group-item">
+            <a href="{% url 'hotel_detail' hotel.pk %}">{{ hotel.nombre }}</a>
+            <span class="float-end">
+                <a href="{% url 'hotel_update' hotel.pk %}" class="btn btn-sm btn-primary">Editar</a>
+                <a href="{% url 'hotel_delete' hotel.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+            </span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
