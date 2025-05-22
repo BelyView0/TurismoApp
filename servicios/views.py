@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from .models import Lugar, Hotel
-from .forms import LugarForm, HotelForm
+from .models import Lugar, Hotel, Restaurante
+from .forms import LugarForm, HotelForm, RestauranteForm
 
 def index(request):
     return render(request, 'index.html')
@@ -78,3 +78,41 @@ def hotel_delete(request, pk):
         hotel.delete()
         return redirect('hotel_list')
     return render(request, 'servicios/hoteles/hotel_confirm_delete.html', {'hotel': hotel})
+
+# CRUD de Restaurantes
+def restaurante_list(request):
+    restaurantes = Restaurante.objects.all()
+    return render(request, 'servicios/restaurantes/restaurante_list.html', {'restaurantes': restaurantes})
+
+def restaurante_detail(request, pk):
+    restaurante = get_object_or_404(Restaurante, pk=pk)
+    return render(request, 'servicios/restaurantes/restaurante_detail.html', {'restaurante': restaurante})
+
+def restaurante_create(request):
+    if request.method == 'POST':
+        form = RestauranteForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('restaurante_list')
+    else:
+        form= RestauranteForm()
+    return render(request, 'servicios/restaurantes/restaurante_form.html', {'form': form})
+
+def restaurante_update(request, pk):
+    restaurante = get_object_or_404(Restaurante, pk=pk)
+    if request.method == 'POST':
+        form = RestauranteForm(request.POST, request.FILES, instance=restaurante)
+        if form.is_valid():
+            form.save()
+            return redirect('restaurante_list')
+    else:
+        form = RestauranteForm(instance=restaurante)
+    return render(request, 'servicios/restaurantes/restaurante_form.html', {'form': form})
+
+def restaurante_delete(request, pk):
+    restaurante = get_object_or_404(Restaurante, pk=pk)
+    if request.method == 'POST':
+        restaurante.delete()
+        return redirect('restaurante_list')
+    return render(request, 'servicios/restaurantes/restaurante_confirm_delete.html', {'restaurante': restaurante})
+

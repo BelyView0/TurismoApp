@@ -21,3 +21,15 @@ class Hotel (models.Model):
 
     def _str_(self):
         return self.nombre
+    
+class Restaurante(models.Model):
+    nombre = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    direccion = models.CharField(max_length=200)
+    telefono = models.CharField(max_length=20)
+    horario = models.CharField(max_length=100)
+    imagen = models.ImageField(upload_to='restaurantes/', null=True, blank=True)
+
+    def _str_(self):
+        return self.nombre
+    

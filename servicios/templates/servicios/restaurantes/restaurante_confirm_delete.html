@@ -1,0 +1,22 @@
+{% extends 'base.html '%}
+
+{%  block titulo %}
+  Eliminar Restaurante 
+{%  endblock  %}
+
+{% block header %}
+<!-- Sobrescribe el bloque del header con nada -->
+{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5 pt-5"></div>
+
+<h2>¿Estás seguro de eliminar "{{ restaurante.nombre }}"?</h2>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">Eliminar</button>
+</form>
+<a href="{% url 'restaurante_list' %}">Cancelar</a>
+
+</div>
+{% endblock %}
