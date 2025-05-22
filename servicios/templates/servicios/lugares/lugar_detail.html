@@ -1,0 +1,23 @@
+{% extends 'base.html '%}
+
+{%  block titulo %}
+   Lugares detalle
+{%  endblock  %}
+
+{% block header %}
+<!-- Sobrescribe el bloque del header con nada -->
+{% endblock %}
+
+
+{% block contenido %}
+<div class="container mt-5 pt-5">
+    <h1>{{ lugar.nombre }}</h1>
+    <p>{{ lugar.descripcion }}</p>
+    <p>Ubicación: {{ lugar.ubicacion }}</p>
+{% if lugar.imagen %}
+  <img src="{{ lugar.imagen.url }}" alt="Imagen de {{ lugar.nombre }}" width="300">
+{% endif %}
+<a href="{% url 'lugar_list' %}">Volver</a>
+</div>
+
+{% endblock %}

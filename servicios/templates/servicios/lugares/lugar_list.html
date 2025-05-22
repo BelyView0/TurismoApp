@@ -1,0 +1,28 @@
+{% extends 'base.html '%}
+
+{%  block titulo %}
+   Lista lugares 
+{%  endblock  %}
+
+{% block header %}
+<!-- Sobrescribe el bloque del header con nada -->
+{% endblock %}
+
+
+{% block contenido %}
+<div class="container mt-5 pt-5">
+    <h1>Lista de Lugares</h1>
+    <a class="btn btn-success mb-3" href="{% url 'lugar_create' %}">Nuevo Lugar</a>
+    <ul class="list-group">
+        {% for lugar in lugares %}
+        <li class="list-group-item">
+            <a href="{% url 'lugar_detail' lugar.pk %}">{{ lugar.nombre }}</a>
+            <span class="float-end">
+                <a href="{% url 'lugar_update' lugar.pk %}" class="btn btn-sm btn-primary">Editar</a>
+                <a href="{% url 'lugar_delete' lugar.pk %}" class="btn btn-sm btn-danger">Eliminar</a>
+            </span>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
