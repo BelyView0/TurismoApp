@@ -2,8 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .models import Lugar, Hotel, Restaurante
 from .forms import LugarForm, HotelForm, RestauranteForm
 
-def index(request):
-    return render(request, 'index.html')
+def index_admin(request):
+    return render(request, 'servicios/index_admin.html')
+def index_usuario(request):
+    return render(request, 'servicios/index_usuario.html')
 
 # CRUD de Lugares
 def lugar_list(request):

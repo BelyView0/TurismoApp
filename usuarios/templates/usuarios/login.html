@@ -1,0 +1,25 @@
+<h2>Iniciar Sesión</h2>
+
+<form method="post">
+  {% csrf_token %}
+  <label>Nombre de usuario:</label>
+  <input type="text" name="username" required>
+
+  <label>Contraseña:</label>
+  <input type="password" name="password" required>
+
+  <button type="submit">Entrar</button>
+</form>
+
+{% if messages %}
+  <ul>
+    {% for message in messages %}
+      <li style="color:red;">{{ message }}</li>
+    {% endfor %}
+  </ul>
+{% endif %}
+
+<p>¿No tienes cuenta?</p>
+<a href="{% url 'registro' %}">
+  <button type="button">Registrarse</button>
+</a>
