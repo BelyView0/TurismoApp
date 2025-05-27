@@ -1,4 +1,5 @@
 {% extends 'base.html '%}
+{% load widget_tweaks %}
 
 {%  block titulo %}
    Form Restaurantes
@@ -9,14 +10,39 @@
 {% endblock %}
 
 {% block contenido %}
-<div class="container mt-5 pt-5"></div>
-<h1>{% if form.instance.pk %}Editar{% else %}Crear{% endif %} Restaurante</h1>
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Guardar</button>
-</form>
-<a href="{% url 'restaurante_list' %}">Cancelar</a>
+<div class="container mt-5 pt-5">
+  <div class="card shadow">
+    <div class="card-header bg-primary text-white">
+      <h1 class="h4 mb-0">
+        {% if form.instance.pk %}Editar{% else %}Crear{% endif %} Restaurante
+      </h1>
+    </div>
+    <div class="card-body">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        {% for field in form %}
+          <div class="row mb-3">
+            <label class="col-sm-3 col-form-label text-end">{{ field.label }}</label>
+            <div class="col-sm-9">
+              {{ field|add_class:"form-control" }}
+              {% if field.help_text %}
+                <div class="form-text">{{ field.help_text }}</div>
+              {% endif %}
+              {% for error in field.errors %}
+                <div class="text-danger small">{{ error }}</div>
+              {% endfor %}
+            </div>
+          </div>
+        {% endfor %}
+
+        <div class="d-flex justify-content-end">
+          <a href="{% url 'restaurante_list' %}" class="btn btn-secondary me-2">Cancelar</a>
+          <button type="submit" class="btn btn-success">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </div>
 
 {% endblock %}
