@@ -9,6 +9,7 @@
 {% endblock %}
 
 {% block contenido %}
+
 <div class="container mt-5 pt-5"></div>
 
 <h2>¿Estás seguro de eliminar "{{ hotel.nombre }}"?</h2>
@@ -18,5 +19,21 @@
 </form>
 <a href="{% url 'hotel_list' %}" class = "btn btn-success">Cancelar</a>
 
+<div class="container mt-5 pt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow">
+        <div class="card-body text-center">
+          <h2 class="card-title">¿Estás seguro de eliminar <br><strong>"{{ hotel.nombre }}"</strong>?</h2>
+          
+          <form method="post" class="my-4">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger me-2">Eliminar</button>
+            <a href="{% url 'hotel_list' %}" class="btn btn-secondary">Cancelar</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

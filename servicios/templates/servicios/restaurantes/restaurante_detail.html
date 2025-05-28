@@ -1,0 +1,35 @@
+{% extends 'base.html '%}
+
+{%  block titulo %}
+   Restaurantes detalle
+{%  endblock  %}
+
+{% block header %}
+<!-- Sobrescribe el bloque del header con nada -->
+{% endblock %}
+
+
+{% block contenido %}
+<div class="container mt-5 pt-5">
+  <div class="card shadow">
+    <div class="card-body">
+      <h1 class="card-title">{{ restaurante.nombre }}</h1>
+      <p class="card-text">{{ restaurante.descripcion }}</p>
+      <p class="card-text"><strong>Dirección:</strong> {{ restaurante.direccion }}</p>
+      <p class="card-text"><strong>Teléfono:</strong> {{ restaurante.telefono }}</p>
+      <p class="card-text"><strong>Horario:</strong> {{ restaurante.horario }}</p>
+
+      {% if restaurante.imagen %}
+        <div class="text-center my-3">
+          <img src="{{ restaurante.imagen.url }}" alt="Imagen de {{ restaurante.nombre }}" class="img-fluid rounded shadow-sm" style="max-width: 100%; height: auto;">
+        </div>
+      {% endif %}
+
+      <div class="d-flex justify-content-end">
+        <a href="{% url 'restaurante_list' %}" class="btn btn-secondary">Volver</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

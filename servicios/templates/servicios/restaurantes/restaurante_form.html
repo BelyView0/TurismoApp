@@ -2,7 +2,7 @@
 {% load widget_tweaks %}
 
 {%  block titulo %}
-   Form Hoteles
+   Form Restaurantes
 {%  endblock  %}
 
 {% block header %}
@@ -14,13 +14,13 @@
   <div class="card shadow">
     <div class="card-header bg-primary text-white">
       <h1 class="h4 mb-0">
-        {% if form.instance.pk %}Editar{% else %}Registrar{% endif %} Hotel
+        {% if form.instance.pk %}Editar{% else %}Crear{% endif %} Restaurante
       </h1>
     </div>
     <div class="card-body">
       <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        
+
         {% for field in form %}
           <div class="row mb-3">
             <label class="col-sm-3 col-form-label text-end">{{ field.label }}</label>
@@ -37,13 +37,12 @@
         {% endfor %}
 
         <div class="d-flex justify-content-end">
-          <a href="{% url 'hotel_list' %}" class="btn btn-secondary me-2">Cancelar</a>
+          <a href="{% url 'restaurante_list' %}" class="btn btn-secondary me-2">Cancelar</a>
           <button type="submit" class="btn btn-success">Guardar</button>
         </div>
       </form>
     </div>
   </div>
 </div>
-
 
 {% endblock %}
