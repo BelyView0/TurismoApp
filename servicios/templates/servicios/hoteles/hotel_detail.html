@@ -19,7 +19,7 @@
     
 
     {% if hotel.sitio_web %}
-    <p><a href="{{ hotel.sitio_web }}" target="_blank">Sitio Web</a></p>
+    <p><a href="{{ hotel.sitio_web }}" target="_blank" class = "btn btn-primary">Sitio Web</a></p>
 
     {% endif %}
 
@@ -27,7 +27,7 @@
     <img src="{{ hotel.imagen.url }}" alt="{{ hotel.nombre }}" width="400">
 
     {% endif %}
-    <a href="{% url 'hotel_list' %}">Volver</a>
+    <a href="{% url 'hotel_list' %}" class = "btn btn-success">Volver</a>
  
 </div>
 

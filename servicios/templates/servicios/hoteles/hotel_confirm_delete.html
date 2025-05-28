@@ -14,9 +14,9 @@
 <h2>¿Estás seguro de eliminar "{{ hotel.nombre }}"?</h2>
 <form method="post">
   {% csrf_token %}
-  <button type="submit">Eliminar</button>
+  <button type="submit" class = "btn btn-danger">Eliminar</button>
 </form>
-<a href="{% url 'hotel_list' %}">Cancelar</a>
+<a href="{% url 'hotel_list' %}" class = "btn btn-success">Cancelar</a>
 
 </div>
 {% endblock %}
