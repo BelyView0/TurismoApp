@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block titulo %}Recuperar contraseña{% endblock %}
+
+
+{% block header %}
+<!-- Sobrescribe el bloque del header con nada -->
+{% endblock %}
+
+{% block contenido %}
+<div class="container mt-5 pt-5">
+    <h2>Recuperar contraseña</h2>
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="username" class="form-label">Nombre de usuario:</label>
+            <input type="text" class="form-control" id="username" name="username" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Generar nueva contraseña</button>
+    </form>
+
+    {% if nueva_contrasena %}
+        <div class="alert alert-success mt-4">
+            Tu nueva contraseña temporal es: <strong>{{ nueva_contrasena }}</strong><br>
+            Inicia sesión y cámbiala lo antes posible.
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

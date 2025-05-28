@@ -1,0 +1,34 @@
+{% extends 'base.html '%}
+
+{%  block titulo %}
+   Lugares detalle
+{%  endblock  %}
+
+{% block header %}
+<!-- Sobrescribe el bloque del header con nada -->
+{% endblock %}
+
+
+{% block contenido %}
+<div class="container mt-5 pt-5">
+  <div class="card shadow">
+    <div class="card-body">
+      <h1 class="card-title">{{ lugar.nombre }}</h1>
+      <p class="card-text">{{ lugar.descripcion }}</p>
+      <p class="card-text"><strong>Ubicación:</strong> {{ lugar.ubicacion }}</p>
+
+      {% if lugar.imagen %}
+        <div class="text-center my-3">
+          <img src="{{ lugar.imagen.url }}" alt="Imagen de {{ lugar.nombre }}" class="img-fluid rounded shadow-sm" style="max-width: 100%; height: auto;">
+        </div>
+      {% endif %}
+
+      <div class="d-flex justify-content-end">
+        <a href="{% url 'lugar_list' %}" class="btn btn-secondary">Volver</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

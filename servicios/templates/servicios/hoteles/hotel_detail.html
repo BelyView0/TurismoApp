@@ -1,0 +1,41 @@
+{% extends 'base.html '%}
+
+{%  block titulo %}
+   Hoteles detalle
+{%  endblock  %}
+
+{% block header %}
+<!-- Sobrescribe el bloque del header con nada -->
+{% endblock %}
+
+
+{% block contenido %}
+<div class="container mt-5 pt-5">
+  <div class="card shadow">
+    <div class="card-body">
+      <h1 class="card-title">{{ hotel.nombre }}</h1>
+      <p class="card-text">{{ hotel.descripcion }}</p>
+      <p class="card-text"><strong>Dirección:</strong> {{ hotel.direccion }}</p>
+      <p class="card-text"><strong>Precio:</strong> ${{ hotel.precio }}</p>
+      <p class="card-text"><strong>Teléfono:</strong> {{ hotel.telefono }}</p>
+
+      {% if hotel.sitio_web %}
+        <p class="card-text">
+          <strong>Sitio Web:</strong> 
+          <a href="{{ hotel.sitio_web }}" target="_blank" class="link-primary">{{ hotel.sitio_web }}</a>
+        </p>
+      {% endif %}
+
+      {% if hotel.imagen %}
+        <div class="text-center my-3">
+          <img src="{{ hotel.imagen.url }}" alt="Imagen de {{ hotel.nombre }}" class="img-fluid rounded shadow-sm" style="max-width: 100%; height: auto;">
+        </div>
+      {% endif %}
+
+      <div class="d-flex justify-content-end">
+        <a href="{% url 'hotel_list' %}" class="btn btn-secondary">Volver</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
