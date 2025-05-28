@@ -12,6 +12,9 @@
 {% block contenido %}
 <div class="container mt-5 pt-5">
     <h1>Lista de Hoteles</h1>
+
+
+    <a class="btn btn-success mb-3" href="{% url 'hotel_create' %}">Registra un nuevo Hotel</a>
     
     {% if user.perfil.es_admin %}
     <a class="btn btn-success mb-3" href="{% url 'hotel_create' %}">Registra Hotel</a>

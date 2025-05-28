@@ -9,6 +9,18 @@
 {% endblock %}
 
 {% block contenido %}
+
+
+<div class="container mt-5 pt-5"></div>
+
+<h2>¿Estás seguro de eliminar "{{ hotel.nombre }}"?</h2>
+<form method="post">
+  {% csrf_token %}
+  <button type="submit" class = "btn btn-danger">Eliminar</button>
+</form>
+<a href="{% url 'hotel_list' %}" class = "btn btn-success">Cancelar</a>
+
+
 <div class="container mt-5 pt-5">
   <div class="row justify-content-center">
     <div class="col-md-8 col-lg-6">
