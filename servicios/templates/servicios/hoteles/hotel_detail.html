@@ -1,13 +1,12 @@
-{% extends 'base.html '%}
+{% extends 'base.html' %}
 
-{%  block titulo %}
+{% block titulo %}
    Hoteles detalle
-{%  endblock  %}
+{% endblock %}
 
 {% block header %}
 <!-- Sobrescribe el bloque del header con nada -->
 {% endblock %}
-
 
 {% block contenido %}
 <div class="container mt-5 pt-5">
@@ -24,21 +23,8 @@
           <strong>Sitio Web:</strong> 
           <a href="{{ hotel.sitio_web }}" target="_blank" class="link-primary">{{ hotel.sitio_web }}</a>
         </p>
+        <p><a href="{{ hotel.sitio_web }}" target="_blank" class="btn btn-primary">Visitar Sitio Web</a></p>
       {% endif %}
-
-
-
-
-    {% if hotel.sitio_web %}
-    <p><a href="{{ hotel.sitio_web }}" target="_blank" class = "btn btn-primary">Sitio Web</a></p>
-
-      {% if hotel.sitio_web %}
-        <p class="card-text">
-          <strong>Sitio Web:</strong> 
-          <a href="{{ hotel.sitio_web }}" target="_blank" class="link-primary">{{ hotel.sitio_web }}</a>
-        </p>
-      {% endif %}
-
 
       {% if hotel.imagen %}
         <div class="text-center my-3">
@@ -46,14 +32,6 @@
         </div>
       {% endif %}
 
-
-
-    {% if hotel.imagen %}
-    <img src="{{ hotel.imagen.url }}" alt="{{ hotel.nombre }}" width="400">
-
-    {% endif %}
-    <a href="{% url 'hotel_list' %}" class = "btn btn-success">Volver</a>
- 
       <div class="d-flex justify-content-end">
         <a href="{% url 'hotel_list' %}" class="btn btn-secondary">Volver</a>
       </div>
